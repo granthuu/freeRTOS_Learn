@@ -5,7 +5,20 @@
 #include "delay.h"
 #include "sys.h"
 
+//FreeRTOS head file, add here.
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "list.h"
+#include "portable.h"
+#include "FreeRTOSConfig.h"
 
+/* application head file */
+#include "app_task.h"
+
+
+/* bsp head file */
+#include "led.h"
 
 #endif /* _APPCONFIG_H */
 
