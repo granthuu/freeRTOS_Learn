@@ -1,6 +1,6 @@
 #include "sys.h"
 #include "usart.h"	  
-
+#include "app_task.h"
 
 
 //////////////////////////////////////////////////////////////////
@@ -91,15 +91,22 @@ void uart_init(u32 bound)
 
 
 
-#if 0
+volatile u8 g_u8RecByte;
+
 void USART1_IRQHandler(void)                	
 {
-    u8 Res;
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+     
     if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  
     {
-        Res =USART_ReceiveData(USART1);
-             
+        g_u8RecByte = USART_ReceiveData(USART1);
+        
+        /* clear usart received interrupt flag bit */
+        USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+        
+        xSemaphoreGiveFromISR( xSemaphore, &xHigherPriorityTaskWoken );
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } 
 } 
-#endif
+
 
