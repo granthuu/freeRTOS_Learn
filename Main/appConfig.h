@@ -19,6 +19,7 @@
 
 /* bsp head file */
 #include "led.h"
+#include "usart.h"
 
 #endif /* _APPCONFIG_H */
 

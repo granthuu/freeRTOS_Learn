@@ -1,5 +1,5 @@
 #include "app_task.h"
-
+#include "stdio.h"
 
 
 static void redLed_Task(void *pvParameters)
@@ -27,11 +27,21 @@ static void greenLed_Task(void *pvParameters)
     }
 }
 
-
+static void print_Task(void *pvParameters)
+{
+    pvParameters = pvParameters;
+    
+    while(1)
+    {
+        printf("print task.\n");
+        vTaskDelay(1000/portTICK_RATE_MS);        
+    }
+}
  
 void app_createTask(void)
 {
-    xTaskCreate( redLed_Task,   "LED1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);      
-    xTaskCreate( greenLed_Task, "LED2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL );
+    xTaskCreate( redLed_Task,   "LED1",  configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);      
+    xTaskCreate( greenLed_Task, "LED2",  configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate( print_Task,    "print", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
 }
 
