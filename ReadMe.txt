@@ -18,4 +18,7 @@ Platform:
    and print according message.
    
    keywords: semaphore, interrupt.
-   
+
+5. add keyScan task.
+	can scan 3xkeys, detect different key event: short, long key press. and also can 
+	detect when key released.

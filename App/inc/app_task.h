@@ -9,10 +9,10 @@
 #include "led.h"
 
 
-#define LED_TASK_STACK_SIZE (256)  /* 256 * 2 = 512Byte */
+#define LED_TASK_STACK_SIZE     (128)  /* 128 * 4bytes = 512Byte, 32bit cpu */
+#define PRINT_TASK_STACK_SIZE   (128)
 
-
-#define LED_TASK_PRIORITY   (1)
+#define LED_TASK_PRIORITY       (1)
 
 
 

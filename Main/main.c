@@ -12,7 +12,8 @@ static void bsp_Init(void)
 	/* 优先级分组设置为4，可配置0-15级抢占式优先级，0级子优先级，即不存在子优先级。*/
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
     LED_Init();
-    uart_init(9600);
+    uart_init(115200);
+    key_init();
 }
 
 int main(void)
